@@ -1,0 +1,21 @@
+{
+    "name": "jshint-exercise",
+    "version": "0.0.1",
+    "dependencies": {},
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "devDependencies": {
+        "grunt": "0.4.1",
+        "grunt-cli": "*",
+        "grunt-contrib-jshint": "0.10.0",
+        "grunt-karma": "0.10.1",
+        "karma-jasmine": "0.3.5",
+        "karma-phantomjs-launcher": "0.1.4",
+        "karma-spec-reporter": "0.0.19"
+    },
+    "scripts": {
+        "start": "node_modules/karma/bin/karma start karma.conf.js",
+        "test": "node_modules/karma/bin/karma start karma.conf.js --singleRun true"
+    }
+}
