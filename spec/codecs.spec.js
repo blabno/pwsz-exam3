@@ -1,6 +1,8 @@
-/*globals codecA, codecB, codecD*/
+/*globals codecA, codecB, codecC, codecD*/
+
 describe('codecA', function ()
 {
+    'use strict';
     describe('when a and b do the magic together', function ()
     {
         it('should return their sum', function ()
@@ -23,6 +25,7 @@ describe('codecA', function ()
 
 describe('codecB', function ()
 {
+    'use strict';
     describe('when a and b do the magic together', function ()
         {
             it('should return their sum', function ()
@@ -45,6 +48,7 @@ describe('codecB', function ()
 
 describe('codecC', function ()
 {
+    'use strict';
     describe('when a and b do the magic together', function ()
     {
         it('should return true', function ()
@@ -70,6 +74,7 @@ describe('codecD', function ()
 {
     describe('when a and b do the magic together', function ()
     {
+        'use strict';
         it('should return true', function ()
         {
             expect(codecC(3, 3)).toEqual(true);
