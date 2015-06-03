@@ -1,6 +1,15 @@
-/*globals codecA, codecB, codecD*/
+/*globals codecA, codecB, codecC, codecD*/
+
+
+
+
+
+
+
 describe('codecA', function ()
 {
+    'use strict';
+
     describe('when a and b do the magic together', function ()
     {
         it('should return their sum', function ()
@@ -10,6 +19,8 @@ describe('codecA', function ()
             expect(codecB(8, 2)).toEqual(10);
         });
     });
+
+
     describe('otherwise', function ()
     {
         it('should return comma separated concatenation', function ()
@@ -23,6 +34,8 @@ describe('codecA', function ()
 
 describe('codecB', function ()
 {
+    'use strict';
+
     describe('when a and b do the magic together', function ()
         {
             it('should return their sum', function ()
@@ -45,6 +58,8 @@ describe('codecB', function ()
 
 describe('codecC', function ()
 {
+    'use strict';
+
     describe('when a and b do the magic together', function ()
     {
         it('should return true', function ()
@@ -68,6 +83,8 @@ describe('codecC', function ()
 
 describe('codecD', function ()
 {
+    'use strict';
+
     describe('when a and b do the magic together', function ()
     {
         it('should return true', function ()
