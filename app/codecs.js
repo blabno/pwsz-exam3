@@ -9,18 +9,18 @@ function codecA(a, b)
         return a;
     }
 }
+
 function codecB(a, b)
 {
     if (a & b) {
         'use strict';
         if (a && b) {
         return a + b;
-    } 
-    else 
-    {
+    } else {
         return a + ',' + b;
     }
 }
+
 function codecC(a, b)
 
 {
