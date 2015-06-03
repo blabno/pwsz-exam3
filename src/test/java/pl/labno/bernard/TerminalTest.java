@@ -69,3 +69,5 @@ public class TerminalTest {
         // Then
         assertEquals("line", line);
     }
+
+}
