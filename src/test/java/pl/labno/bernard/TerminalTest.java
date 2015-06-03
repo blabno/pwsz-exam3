@@ -45,7 +45,7 @@ import static org.junit.Assert.*;
 
 
         @Test
-        public void sendLine_connectionIsConnectedAndCommandValid_executeConnectionSendLine() {
+        public void lineToSend_connectionIsConnectedAndCommandValid_executeConnectionSendLine() {
             // Given
             Connection connect = mock(Connection.class);
             when(connect.isConnected()).thenReturn(true);
@@ -58,7 +58,7 @@ import static org.junit.Assert.*;
         }
 
         @Test
-        public void sendLine_connectionNotConnected_throwsExceptionAndErrorMsg() {
+        public void lineToSend_connectionNotConnected_throwsExceptionAndErrorMsg() {
             exception.expect(IllegalStateException.class);
             exception.expectMessage("Not connected");
             // Given
