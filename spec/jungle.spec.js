@@ -1,4 +1,6 @@
-describe('Donkey', function () {
+describe('Donkey', function () 
+
+   "use strict";
 
   var donkey;
     
@@ -7,6 +9,8 @@ describe('Donkey', function () {
   });
 
   describe('when donkey gets hungry', function () {
+
+     "use strict";
 
     beforeEach(function () {
       donkey.makeHungry();
@@ -18,6 +22,8 @@ describe('Donkey', function () {
 
     describe('and when donkey gets banana', function () {
       
+       "use strict";
+
       beforeEach(function () {
         donkey.giveHay();
       });

@@ -1,6 +1,10 @@
 describe('codecA', function() {
   
+"use strict";
+
   describe('when a and b do the magic together', function () {
+
+    "use strict";
 
     it('should return their sum', function () {
       expect(codecA(2, 3)).toEqual(5);
@@ -9,6 +13,8 @@ describe('codecA', function() {
   });
 
   describe('otherwise', function() {
+
+     "use strict";
 
     it('should return a', function () {
       expect(codecA(1, 2)).toEqual(1);
@@ -23,7 +29,11 @@ describe('codecA', function() {
 
 describe('codecB', function() {
 
+  "use strict";
+
   describe('when a and b do the magic together', function () {
+
+     "use strict";
 
     it('should return their sum', function () {
       expect(codecB(-1, 3)).toEqual(2);
@@ -33,6 +43,8 @@ describe('codecB', function() {
   });
 
   describe('otherwise', function() {
+
+     "use strict";
 
     it('should return comma separated concatenation', function () {
       expect(codecB(0, 3)).toEqual('0,3');
@@ -46,6 +58,8 @@ describe('codecB', function() {
 
 describe('codecC', function() {
   
+   "use strict";
+
   describe('when a and b do the magic together', function () {
 
     it('should return true', function () {
@@ -56,6 +70,8 @@ describe('codecC', function() {
   });
 
   describe('otherwise', function() {
+
+     "use strict";
 
     it('should return false', function () {
       expect(codecC(0, 3)).toEqual(false);
@@ -69,7 +85,11 @@ describe('codecC', function() {
 
 describe('codecD', function() {
 
+   "use strict";
+
   describe('when a and b do the magic together', function () {
+      
+     "use strict";
       
     it('should return true', function () {
       expect(codecD(3, 3)).toEqual(true);
@@ -78,6 +98,8 @@ describe('codecD', function() {
   });
 
   describe('otherwise', function() {
+
+     "use strict";
 
     it('should return false', function () {
       expect(codecD(0, 3)).toEqual(false);
