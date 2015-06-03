@@ -4,20 +4,26 @@ function Donkey()
 }
 Donkey.prototype.makeHungry = function ()
 {
+    'use strict';
     this.hungry = true;
 }
 Donkey.prototype.giveHay = function ()
 {
+    'use strict'
     this.hungry = false;
 }
 Donkey.prototype.makeSound = function ()
 {
+    'use strict'
     var noise = 'u-a-a';
-    if (this.hungry)
+    if (this.hungry){
         noise = 'banana';
         return noise;
+    }
 }
+/*jshint unused:false*/
 function rumble()
 {
+    'use strict';
     return 'wofbrrrriiiitrututu';
 }
