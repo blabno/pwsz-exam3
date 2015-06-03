@@ -1,79 +1,89 @@
-package pl.labno.bernard;
+    package pl.labno.bernard;
 
-
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
-
-
+    
+    import org.junit.Assert;
+    import org.junit.Rule;
+    import org.junit.Test;
+    import org.junit.rules.ExpectedException;
+    import static org.mockito.Mockito.*;
 
 
     public class TerminalTest {
 
         @Test
-        public void lineToSend_connectionWorksAndCommandNotValid_throwsExceptionAndErrorMsg() {
-
-            exception.expect(IllegalStateException.class);
-            exception.expectMessage("Unknown command");
-            // Given
-            Connection connect = mock(Connection.class);
-            when(connect.isConnected()).thenReturn(true);
-            when(connect.sendLine("line")).thenThrow(UnknownCommandException.class);
-            Terminal terminal = new Terminal(connect);
-            // When
-            terminal.sendLine("line");
-            String errorMsg = terminal.getErrorMessage();
-            // Then
-            assertEquals("This command is unknown", errorMsg);
+        public void lineToSend_LineThrowError_throwException(){
+            expectedException.expect(IllegalStateException.class);
+            //Given
+            Connection con = mock(Connection.class);
+            Terminal terminal = new Terminal(con);
+            when(con.isConnected()).thenReturn(true);
+            when(con.sendLine(".")).thenThrow(IllegalStateException.class);
+            //When
+            terminal.sendLine(".");
+            //Then
+            verify(con, times(1)).sendLine(".");
+            verify(con, times(1)).isConnected();
+            String errorMessage = terminal.getErrorMessage();
+            Assert.assertEquals("unknown command", errorMessage);
+            expectedException.expectMessage(errorMessage);
         }
 
         @Rule
-        public ExpectedException exception = ExpectedException.none();
-
+        public ExpectedException expectedException = ExpectedException.none();
         @Test
-        public void lineToSend_lineNull_throwsException() {
-
-            exception.expect(IllegalArgumentException.class);
-            exception.expectMessage("line paramater must not be null");
+        public void lineToSend_parameterNull_throwException(){
+            expectedException.expect(IllegalArgumentException.class);
+            expectedException.expectMessage("line param must not be null");
             //Given
-            Connection connect = mock(Connection.class);
-            Terminal terminal = new Terminal(connect);
-            // When
+            Connection con = mock(Connection.class);
+            Terminal terminal = new Terminal(con);
+            terminal.getErrorMessage();
+            //Then
             terminal.sendLine(null);
         }
 
-
         @Test
-        public void lineToSend_connectionIsConnectedAndCommandValid_executeConnectionSendLine() {
-
-            // Given
-            Connection connect = mock(Connection.class);
-            when(connect.isConnected()).thenReturn(true);
-            when(connect.sendLine("line")).thenReturn("line");
-            Terminal terminal = new Terminal(connect);
+        public void lineToSend_noconnected_throwException(){
+            expectedException.expect(IllegalStateException.class);
+            //Given
+            Connection con = mock(Connection.class);
+            Terminal terminal = new Terminal(con);
+            when(con.isConnected()).thenReturn(true);
+            when(terminal.sendLine(".")).thenThrow(IllegalStateException.class);
+            //When
+            terminal.sendLine(".");
+            //Then
+            verify(con, times(1)).isConnected();
+            String errorMessage = terminal.getErrorMessage();
+            Assert.assertEquals("command is unknown", errorMessage);
+            expectedException.expectMessage(errorMessage);
+        }
+        @Test
+        public void lineToSend_Commandunknown_throwException(){
+            expectedException.expect(IllegalStateException.class);
+            //Given
+            Connection con = mock(Connection.class);
+            Terminal terminal = new Terminal(con);
+            when(con.isConnected()).thenReturn(false);
             // When
-            String line = terminal.sendLine("line");
-            // Then
-            assertEquals("line", line);
+            terminal.sendLine(".");
+            //Then
+            String errorMessage = terminal.getErrorMessage();
+            Assert.assertEquals("not connected", errorMessage);
+            expectedException.expectMessage("connected");
         }
 
         @Test
-        public void lineToSend_connectionNotConnected_throwsExceptionAndErrorMsg() {
-            
-            exception.expect(IllegalStateException.class);
-            exception.expectMessage("Not connected");
-            // Given
-            Connection connect = mock(Connection.class);
-            when(connect.isConnected()).thenReturn(false);
-            Terminal terminal = new Terminal(connect);
-            // When
-            terminal.sendLine("line");
-            String errorMessage = terminal.getErrorMessage();
+        public void lineToSend_isnotnull_returnsSendLinesParam(){
+            //Given
+            Connection con = mock(Connection.class);
+            Terminal terminal = new Terminal(con);
+            when(con.sendLine(".")).thenReturn(".");
+            when(con.isConnected()).thenReturn(true);
+            terminal.getErrorMessage();
             // Then
-            assertEquals("terminal is not connected", errorMessage);
+            terminal.sendLine(".");
+            verify(con, times(1)).sendLine(".");
         }
 
     }
