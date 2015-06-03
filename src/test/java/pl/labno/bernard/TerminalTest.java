@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 
         @Test
         public void lineToSend_connectionWorksAndCommandNotValid_throwsExceptionAndErrorMsg() {
+
             exception.expect(IllegalStateException.class);
             exception.expectMessage("Unknown command");
             // Given
@@ -34,6 +35,7 @@ import static org.junit.Assert.*;
 
         @Test
         public void lineToSend_lineNull_throwsException() {
+
             exception.expect(IllegalArgumentException.class);
             exception.expectMessage("line paramater must not be null");
             //Given
@@ -46,6 +48,7 @@ import static org.junit.Assert.*;
 
         @Test
         public void lineToSend_connectionIsConnectedAndCommandValid_executeConnectionSendLine() {
+
             // Given
             Connection connect = mock(Connection.class);
             when(connect.isConnected()).thenReturn(true);
@@ -59,12 +62,13 @@ import static org.junit.Assert.*;
 
         @Test
         public void lineToSend_connectionNotConnected_throwsExceptionAndErrorMsg() {
+            
             exception.expect(IllegalStateException.class);
             exception.expectMessage("Not connected");
             // Given
             Connection connect = mock(Connection.class);
-            when(con.isConnected()).thenReturn(false);
-            Terminal terminal = new Terminal(con);
+            when(connect.isConnected()).thenReturn(false);
+            Terminal terminal = new Terminal(connect);
             // When
             terminal.sendLine("line");
             String errorMessage = terminal.getErrorMessage();
