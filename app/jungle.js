@@ -13,9 +13,10 @@ Donkey.prototype.giveHay = function ()
 Donkey.prototype.makeSound = function ()
 {
     var noise = 'u-a-a';
-    if (this.hungry)
-        noise = 'banana';
+    if (this.hungry) {
+        noise = 'banana'
         return noise;
+    }
 }
 function rumble()
 {
