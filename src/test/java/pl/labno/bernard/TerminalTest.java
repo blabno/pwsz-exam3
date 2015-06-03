@@ -6,9 +6,7 @@ package pl.labno.bernard;
         import static org.mockito.Mockito.*;
         import static org.junit.Assert.*;
 
-
 public class TerminalTest {
-
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -39,7 +37,6 @@ public class TerminalTest {
         assertEquals("terminal is not connected", errorMessage);
     }
 
-
     @Test
     public void sendLine_connectionIsConnectedAndCommandNoValid_throwsExceptionAndErrorMsg() {
         exception.expect(IllegalStateException.class);
@@ -56,7 +53,6 @@ public class TerminalTest {
         assertEquals("This command is unknown", errorMsg);
     }
 
-
     @Test
     public void sendLine_connectionIsConnectedAndCommandValid_executeConnectionSendLine() {
         // Given
@@ -69,5 +65,4 @@ public class TerminalTest {
         // Then
         assertEquals("line", line);
     }
-
 }
