@@ -1,3 +1,4 @@
+/*global Donkey */
 function Donkey() {}
 
 Donkey.prototype.makeHungry = function () {

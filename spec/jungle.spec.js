@@ -1,4 +1,4 @@
-describe('Donkey', function () 
+describe('Donkey', function () {
 
    'use strict';
 
