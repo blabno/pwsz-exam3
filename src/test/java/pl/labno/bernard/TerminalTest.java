@@ -1,10 +1,10 @@
 package pl.labno.bernard;
 
-import org.junit.Assert.*;
-import org.junit.rules.ExpectedException;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 import org.junit.Test;
-import org.mockito.Mockito.*;
 
 public class TerminalTest {
 
@@ -12,37 +12,13 @@ public class TerminalTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void sendLine_lineJestNull_throwException() {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("line param must not be null");
-        //Given
-        Connection coMo = mock(Connection.class);
-        Terminal t = new Terminal(coMo);
-        // When
-        t.sendLine(null);
-    }
-
-    @Test
-    public void sendLine_connecJestConnectedICommandJestValid_executeConnectionSendLine() {
-        // Given
-        Connection coMo = mock(Connection.class);
-        when(coMo.isConnected()).thenReturn(true);
-        when(coMo.sendLine("line")).thenReturn("line");
-        Terminal t = new Terminal(coMo);
-        // When
-        String line = t.sendLine("line");
-        // Then
-        assertEquals("line", line);
-    }
-
-    @Test
-    public void sendLine_connecNieJestConnected_throwExceptionAndSetErrorMsg() {
+    public void sendLine_connectionNoConnected_throwExceptionAndSetErrorMsg() {
         exception.expect(IllegalStateException.class);
         exception.expectMessage("Not connected");
         // Given
-        Connection coMo = mock(Connection.class);
-        when(coMo.isConnected()).thenReturn(false);
-        Terminal t = new Terminal(coMo);
+        Connection conn = mock(Connection.class);
+        when(conn.isConnected()).thenReturn(false);
+        Terminal t = new Terminal(conn);
         // When
         t.sendLine("line");
         String errorMsg = t.getErrorMessage();
@@ -51,18 +27,42 @@ public class TerminalTest {
     }
 
     @Test
-    public void sendLine_connecJestConnectedAndCommandNotValid_throwExceptionAndSetErrorMsg() {
+    public void sendLine_lineNull_throwException() {
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("line param must not be null");
+        //Given
+        Connection conn = mock(Connection.class);
+        Terminal t = new Terminal(conn);
+        // When
+        t.sendLine(null);
+    }
+
+    @Test
+    public void sendLine_connectionConnectedAndCommandNoValid_throwExceptionAndSetErrorMsg() {
         exception.expect(IllegalStateException.class);
         exception.expectMessage("Unknown command");
         // Given
-        Connection coMo = mock(Connection.class);
-        when(coMo.isConnected()).thenReturn(true);
-        when(coMo.sendLine("line")).thenThrow(UnknownCommandException.class);
-        Terminal t = new Terminal(coMo);
+        Connection conn = mock(Connection.class);
+        when(conn.isConnected()).thenReturn(true);
+        when(conn.sendLine("line")).thenThrow(UnknownCommandException.class);
+        Terminal t = new Terminal(conn);
         // When
         t.sendLine("line");
-        String errorMsg = t.getErrorMessage();
+        String error = t.getErrorMessage();
         // Then
-        assertEquals("This command is unknown", errorMsg);
+        assertEquals("This command is unknown", error);
+    }
+
+    @Test
+    public void sendLine_connectionConnectedAndCommandValid_executeConnectionSendLine() {
+        // Given
+        Connection conn = mock(Connection.class);
+        when(conn.isConnected()).thenReturn(true);
+        when(conn.sendLine("line")).thenReturn("line");
+        Terminal t = new Terminal(conn);
+        // When
+        String line = t.sendLine("line");
+        // Then
+        assertEquals("line", line);
     }
 }
