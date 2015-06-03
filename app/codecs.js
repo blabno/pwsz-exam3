@@ -1,6 +1,8 @@
+/* exported codecA, codecB, codecC ,codecD */
 function codecA(a, b)
 {
-    if (a & b) {
+    'use strict';
+    if (a & b) {// jshint ignore:line
         return a + b;
     } else {
         return a;
@@ -8,6 +10,7 @@ function codecA(a, b)
 }
 function codecB(a, b)
 {
+    'use strict';
     if (a && b) {
         return a + b;
     } else {
@@ -16,9 +19,11 @@ function codecB(a, b)
 }
 function codecC(a, b)
 {
-    return a == b;
+    'use strict';
+    return a == b;// jshint ignore:line
 }
 function codecD(a, b)
 {
+    'use strict';
     return a === b;
 }

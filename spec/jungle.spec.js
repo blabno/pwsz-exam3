@@ -1,5 +1,8 @@
+/*globals donkey,Donkey,beforeEach*/
+/*exported donkey*/
 describe('Donkey', function ()
 {
+    'use strict';
     var donkey;
     beforeEach(function ()
     {
