@@ -1,3 +1,4 @@
+/*global Donkey */
 describe('Donkey', function () {
 
    'use strict';
